@@ -1,4 +1,5 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+This is HackerOs, simalator of hacker. Now its only layout, backend not ready to online.
+But you can just use it local, or just check code
 
 ## Getting Started
 
