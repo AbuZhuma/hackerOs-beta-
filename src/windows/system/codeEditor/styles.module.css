@@ -1,0 +1,235 @@
+.editorContainer {
+  display: flex;
+  height: 100%;
+  background-color: #0a0a12;
+  color: #00ff41;
+  font-family: 'Courier New', monospace;
+  overflow: hidden;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #121220;
+  border-right: 1px solid #2a2a4a;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
+
+.searchBox {
+  margin-bottom: 15px;
+}
+
+.fileTree {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-bottom: 15px;
+}
+
+.treeItem {
+  margin: 3px 0;
+}
+
+.treeRow {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: all 0.2s;
+}
+
+.treeRow:hover {
+  background-color: #2a2a4a;
+}
+
+.treeChildren {
+  margin-left: 15px;
+  border-left: 1px dashed #2a2a4a;
+  padding-left: 5px;
+}
+
+.currentFolder {
+  background-color: #2a3a5a !important;
+  border-left: 2px solid #00ff41;
+}
+
+.sidebarButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.mainArea {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.tabsContainer {
+  display: flex;
+  background-color: #121220;
+  border-bottom: 1px solid #2a2a4a;
+  height: 40px;
+  overflow-x: auto;
+}
+
+.tab {
+  padding: 10px 15px;
+  cursor: pointer;
+  border-right: 1px solid #2a2a4a;
+  display: flex;
+  align-items: center;
+  background-color: #1a1a2a;
+  transition: all 0.2s;
+}
+
+.tab:hover {
+  background-color: #2a2a4a;
+}
+
+.activeTab {
+  background-color: #0a0a12;
+  border-top: 2px solid #00ff41;
+}
+
+.closeTab {
+  margin-left: 10px;
+  padding: 0 5px;
+  border-radius: 50%;
+}
+
+.closeTab:hover {
+  background-color: #ff0033;
+  color: white;
+}
+
+.editorWrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.editorHeader {
+  padding: 10px;
+  background-color: #121220;
+  border-bottom: 1px solid #2a2a4a;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fileName {
+  font-weight: bold;
+}
+
+.editorButtons {
+  display: flex;
+  gap: 10px;
+}
+
+.deleteButton {
+  background-color: #ff0033;
+}
+
+.welcomeScreen {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #00ff41;
+}
+
+.welcomeScreen h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.welcomeScreen p {
+  margin-bottom: 30px;
+}
+
+.welcomeButtons {
+  display: flex;
+  gap: 20px;
+}
+
+.dialogOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.dialog {
+  background-color: #121220;
+  padding: 20px;
+  border: 1px solid #2a2a4a;
+  border-radius: 5px;
+  width: 400px;
+}
+
+.dialog h3 {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.dialogButtons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.noResults {
+  padding: 10px;
+  color: #ff0033;
+  text-align: center;
+}
+
+.currentFolderInfo {
+  padding: 10px;
+  background-color: #1a1a2a;
+  border-bottom: 1px solid #2a2a4a;
+  margin-bottom: 10px;
+}
+
+.folderPath {
+  font-size: 12px;
+  color: #00cc88;
+  word-break: break-all;
+}
+
+.currentFolder {
+  background-color: #2a3a5a !important;
+  border-left: 2px solid #00ff41;
+}
+
+.folderActions {
+  margin-left: auto;
+  display: flex;
+  gap: 5px;
+}
+
+.smallButton {
+  padding: 2px 5px;
+  min-width: auto;
+  font-size: 12px;
+}
+
+.dialogPath {
+  font-size: 12px;
+  color: #00cc88;
+  margin-bottom: 10px;
+  padding: 5px;
+  background-color: #1a1a2a;
+  border-radius: 3px;
+}

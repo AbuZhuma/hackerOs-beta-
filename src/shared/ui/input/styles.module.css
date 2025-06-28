@@ -1,0 +1,183 @@
+.inputContainer {
+  width: 100%;
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: 'Courier New', monospace;
+  color: #00ffaa;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 5px #00ffff80;
+  position: relative;
+  padding-left: 15px;
+}
+
+.label::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: #00ffaa;
+  animation: blink 1.5s infinite steps(1);
+}
+
+.required {
+  color: #ff0055;
+  margin-left: 0.25rem;
+  text-shadow: 0 0 5px #ff005580;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #00ffaa40;
+  background-color: rgba(0, 10, 20, 0.7);
+  transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.inputWrapper:focus-within {
+  border-color: #00ffaa;
+  box-shadow: 0 0 15px #00ffff80;
+  background-color: rgba(0, 20, 40, 0.8);
+}
+
+.bracket {
+  color: #00ffaa60;
+  font-family: 'Courier New', monospace;
+  user-select: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  color: #00ffaa;
+  font-family: 'Courier New', monospace;
+  padding: 0.7rem 0.5rem;
+  outline: none;
+  font-size: 1rem;
+  min-width: 0;
+  border-radius: 0;
+  text-shadow: 0 0 5px #00ffff80;
+  caret-color: #00ffaa;
+}
+
+.input::placeholder {
+  color: #00ffaa60;
+  font-style: italic;
+  text-shadow: none;
+}
+
+.cursor {
+  position: absolute;
+  right: 1.5rem;
+  color: #00ffaa;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  text-shadow: 0 0 5px #00ffff;
+}
+
+.cursor.visible {
+  opacity: 1;
+  animation: blink 1s infinite steps(1);
+}
+
+.error .bracket,
+.error .cursor {
+  color: #ff0055;
+  text-shadow: 0 0 5px #ff005580;
+}
+
+.error .inputWrapper {
+  border-color: #ff0055;
+  box-shadow: 0 0 15px #ff005580;
+  background-color: rgba(40, 0, 10, 0.7);
+}
+
+.success .bracket {
+  color: #00ffaa;
+}
+
+.success .inputWrapper {
+  border-color: #00ffaa;
+  box-shadow: 0 0 15px #00ffaa80;
+}
+
+.disabled .inputWrapper {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #555;
+}
+
+.disabled .input {
+  cursor: not-allowed;
+  color: #555;
+}
+
+.errorMessage {
+  margin-top: 0.5rem;
+  color: #ff0055;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  padding-left: 1rem;
+  text-shadow: 0 0 3px #ff005580;
+  position: relative;
+}
+
+.errorMessage::before {
+  content: '!';
+  position: absolute;
+  left: 0;
+  color: #ff0055;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.inputWrapper:not(.disabled):hover {
+  border-color: #00ffaa80;
+  background-color: rgba(0, 15, 30, 0.8);
+}
+
+.inputWrapper:not(.disabled):hover .bracket {
+  color: #00ffaa;
+}
+
+.inputWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #00ffaa10 50%,
+    transparent 100%
+  );
+  animation: scanline 6s linear infinite;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.inputWrapper:focus-within::after {
+  opacity: 1;
+}

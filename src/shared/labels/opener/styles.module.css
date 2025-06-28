@@ -1,0 +1,12 @@
+.apps {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Courier New', monospace;
+    color: #00ffaa;
+    text-shadow: 0 0 5px #00ffff;
+}

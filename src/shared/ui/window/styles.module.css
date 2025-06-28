@@ -1,0 +1,344 @@
+:root {
+  --hacker-primary: #00ffaa;
+  --hacker-secondary: rgba(0, 255, 170, 0.4);
+  --hacker-bg: #0d0d0d;
+  --hacker-header-bg: #111111;
+  --hacker-border: rgba(0, 255, 170, 0.3);
+  --hacker-text: #e0e0e0;
+  --hacker-disabled: #4a4a4a;
+  --hacker-scroll: rgba(0, 255, 170, 0.2);
+  --hacker-danger: #ff5555;
+}
+
+.window {
+  position: absolute;
+  background: var(--hacker-bg);
+  border: 1px solid var(--hacker-border);
+  border-radius: 6px;
+  box-shadow: 
+    0 4px 20px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(0, 255, 170, 0.1),
+    0 0 30px rgba(0, 255, 170, 0.1);
+  display: flex;
+  flex-direction: column;
+  color: var(--hacker-text);
+  font-family: 'SF Mono', 'Roboto Mono', monospace;
+  animation: 
+    windowFadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    terminalGlow 3s infinite alternate;
+  overflow: auto;
+  backdrop-filter: blur(2px);
+  transition: 
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+.close{
+  display: none;
+}
+
+.window:hover {
+  border-color: var(--hacker-primary);
+  box-shadow: 
+    0 4px 30px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 255, 170, 0.2),
+    0 0 40px rgba(0, 255, 170, 0.15);
+}
+
+.window.maximized {
+  border-radius: 0;
+  box-shadow: none;
+  border-width: 1px;
+  animation: none;
+}
+
+.windowHeader {
+  padding: 10px 15px;
+  background: var(--hacker-header-bg);
+  border-bottom: 1px solid rgba(0, 255, 170, 0.1);
+  cursor: move;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.windowHeader::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent, 
+    var(--hacker-primary), 
+    transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.window:hover .windowHeader::after {
+  opacity: 0.6;
+}
+
+.windowTitle {
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 0.5px;
+  text-shadow: 0 0 8px var(--hacker-secondary);
+  transition: all 0.3s ease;
+}
+
+.windowControls {
+  display: flex;
+  gap: 8px;
+}
+
+.controlButton {
+  background: rgba(30, 30, 30, 0.8);
+  border: 1px solid rgba(0, 255, 170, 0.3);
+  color: var(--hacker-primary);
+  cursor: pointer;
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+  font-size: 0.7rem;
+  border-radius: 3px;
+  transition: 
+    all 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.1s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.controlButton::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg, 
+    rgba(0, 255, 170, 0.1) 0%, 
+    transparent 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.controlButton:hover {
+  background: rgba(0, 50, 40, 0.6);
+  border-color: var(--hacker-primary);
+}
+
+.controlButton:hover::before {
+  opacity: 1;
+}
+
+.controlButton:active {
+  transform: scale(0.92);
+}
+
+.closeButton {
+  background: rgba(60, 0, 0, 0.7);
+  border-color: rgba(255, 85, 85, 0.4);
+  color: var(--hacker-danger);
+}
+
+.closeButton:hover {
+  background: rgba(90, 0, 0, 0.8);
+  border-color: var(--hacker-danger);
+}
+
+.windowContent {
+  flex: 1;
+  overflow: auto;
+  padding: 15px;
+  background: rgba(0, 10, 8, 0.2);
+  scroll-behavior: smooth;
+}
+
+.windowContent::-webkit-scrollbar {
+  width: 10px;
+}
+
+.windowContent::-webkit-scrollbar-track {
+  background: rgba(0, 20, 15, 0.1);
+}
+
+.windowContent::-webkit-scrollbar-thumb {
+  background: var(--hacker-scroll);
+  border-radius: 5px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+}
+
+.windowContent::-webkit-scrollbar-thumb:hover {
+  background: var(--hacker-primary);
+}
+
+.resizeHandle {
+  position: absolute;
+  background: transparent;
+  z-index: 10;
+  opacity: 0;
+  transition: 
+    opacity 0.3s ease,
+    background 0.3s ease;
+}
+
+.resizeHandle:hover {
+  opacity: 1;
+  background: rgba(0, 255, 170, 0.2);
+}
+
+.resizeHandle::after {
+  content: '';
+  position: absolute;
+  background: var(--hacker-primary);
+  transition: all 0.3s ease;
+}
+
+.resizeHandle.top,
+.resizeHandle.bottom {
+  height: 5px;
+  left: 5px;
+  right: 5px;
+  cursor: ns-resize;
+}
+
+.resizeHandle.top {
+  top: 0;
+}
+
+.resizeHandle.bottom {
+  bottom: 0;
+}
+
+.resizeHandle.left,
+.resizeHandle.right {
+  width: 5px;
+  top: 5px;
+  bottom: 5px;
+  cursor: ew-resize;
+}
+
+.resizeHandle.left {
+  left: 0;
+}
+
+.resizeHandle.right {
+  right: 0;
+}
+
+.resizeHandle.top::after,
+.resizeHandle.bottom::after {
+  left: 50%;
+  transform: translateX(-50%);
+  width: 30px;
+  height: 2px;
+  border-radius: 1px;
+}
+
+.resizeHandle.left::after,
+.resizeHandle.right::after {
+  top: 50%;
+  transform: translateY(-50%);
+  width: 2px;
+  height: 30px;
+  border-radius: 1px;
+}
+
+.resizeHandle.topRight,
+.resizeHandle.topLeft,
+.resizeHandle.bottomRight,
+.resizeHandle.bottomLeft {
+  width: 12px;
+  height: 12px;
+  z-index: 11;
+}
+
+.resizeHandle.topRight {
+  top: 0;
+  right: 0;
+  cursor: ne-resize;
+}
+
+.resizeHandle.topLeft {
+  top: 0;
+  left: 0;
+  cursor: nw-resize;
+}
+
+.resizeHandle.bottomRight {
+  bottom: 0;
+  right: 0;
+  cursor: se-resize;
+}
+
+.resizeHandle.bottomLeft {
+  bottom: 0;
+  left: 0;
+  cursor: sw-resize;
+}
+
+@keyframes windowFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes terminalGlow {
+  0%, 100% {
+    box-shadow: 
+      0 4px 20px rgba(0, 0, 0, 0.5),
+      0 0 0 1px rgba(0, 255, 170, 0.1),
+      0 0 30px rgba(0, 255, 170, 0.1);
+  }
+  50% {
+    box-shadow: 
+      0 4px 25px rgba(0, 0, 0, 0.6),
+      0 0 0 1px rgba(0, 255, 170, 0.15),
+      0 0 40px rgba(0, 255, 170, 0.15);
+  }
+}
+
+@keyframes headerGlow {
+  0%, 100% {
+    text-shadow: 0 0 8px rgba(0, 255, 170, 0.6);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(0, 255, 170, 0.8);
+  }
+}
+
+.windowHeader {
+  animation: headerGlow 4s infinite alternate;
+}
+
+.window::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    linear-gradient(rgba(0, 255, 170, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 170, 0.03) 1px, transparent 1px);
+  background-size: 20px 20px;
+  opacity: 0.1;
+  pointer-events: none;
+  z-index: -1;
+}

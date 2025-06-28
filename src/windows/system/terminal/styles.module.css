@@ -1,0 +1,230 @@
+.terminalContainer {
+  width: 100%;
+  height: 100%;
+  border: 1px solid #00ffaa20;
+  border-radius: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Courier New', monospace;
+  box-shadow: 
+    0 0 15px #00ffff80,
+    inset 0 0 10px #00ffaa30;
+  cursor: text;
+  background: rgba(0, 10, 20, 0.9);
+  position: relative;
+}
+
+.terminalContainer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #00ffaa10 50%,
+    transparent 100%
+  );
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.terminalHeader {
+  background: linear-gradient(to right, #000000, #001a1a);
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #00ffaa30;
+  position: relative;
+  z-index: 1;
+}
+
+.terminalButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.terminalButtons span {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.terminalButtons span:hover {
+  transform: scale(1.1);
+}
+
+.closeButton {
+  background-color: #ff0055;
+}
+
+.closeButton:hover {
+  background-color: #ff3366;
+  box-shadow: 0 0 10px #ff005580;
+}
+
+.minimizeButton {
+  background-color: #ffcc00;
+}
+
+.minimizeButton:hover {
+  background-color: #ffdd33;
+  box-shadow: 0 0 10px #ffcc0080;
+}
+
+.maximizeButton {
+  background-color: #00ffaa;
+}
+
+.maximizeButton:hover {
+  background-color: #33ffbb;
+  box-shadow: 0 0 10px #00ffaa80;
+}
+
+.terminalTitle {
+  margin-left: 15px;
+  color: #00ffaa;
+  font-size: 0.95rem;
+  text-shadow: 0 0 8px #00ffff;
+  letter-spacing: 1px;
+  flex-grow: 1;
+}
+
+.terminalBody {
+  flex: 1;
+  overflow-y: auto;
+  color: #00ffaa;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  padding: 15px;
+  position: relative;
+  z-index: 1;
+  background: 
+    linear-gradient(rgba(0, 30, 30, 0.1) 0 0 / 100% 30px),
+    linear-gradient(#000000 30px, transparent 0) 0 0 / 100% 60px;
+}
+
+.terminalLine {
+  margin-bottom: 6px;
+  word-break: break-all;
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  text-shadow: 0 0 3px #00ffff80;
+}
+
+.prompt {
+  color: #00ffaa;
+  margin-right: 10px;
+  text-shadow: 0 0 8px #00ffff;
+  font-weight: bold;
+}
+
+.output {
+  color: #00ffaa;
+  opacity: 0.9;
+}
+
+.errorOutput {
+  color: #ff0055;
+  text-shadow: 0 0 5px #ff005580;
+}
+
+.successOutput {
+  color: #00ffaa;
+  text-shadow: 0 0 5px #00ffaa80;
+}
+
+.emptyLine {
+  height: 1.5em;
+}
+
+.inputLine {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  position: relative;
+}
+
+.terminalInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #00ffaa;
+  font-family: 'Courier New', monospace;
+  font-size: 0.95rem;
+  caret-color: #00ffaa;
+  text-shadow: 0 0 5px #00ffff80;
+  padding: 5px 0;
+}
+
+.terminalBody::-webkit-scrollbar {
+  width: 10px;
+}
+
+.terminalBody::-webkit-scrollbar-track {
+  background: rgba(0, 20, 20, 0.2);
+  border-left: 1px solid #00ffaa20;
+}
+
+.terminalBody::-webkit-scrollbar-thumb {
+  background: linear-gradient(#00ffaa40, #00ffff60);
+  border-radius: 2px;
+  border: 1px solid #00ffaa60;
+}
+
+.terminalBody::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#00ffaa60, #00ffff80);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminalInput::after {
+  content: "_";
+  animation: blink 0.8s step-end infinite;
+  color: #00ffaa;
+  font-weight: bold;
+  position: absolute;
+  margin-left: 2px;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes glitch {
+  0% { text-shadow: 0 0 5px #00ffff; }
+  25% { text-shadow: -2px 0 5px #ff0055, 2px 0 5px #00ffff; }
+  50% { text-shadow: 2px 0 5px #ff0055, -2px 0 5px #00ffff; }
+  100% { text-shadow: 0 0 5px #00ffff; }
+}
+
+.terminalInput:focus {
+  animation: glitch 0.3s linear 1;
+}
+
+.terminalBody::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to right, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 10px 20px;
+  pointer-events: none;
+  z-index: -1;
+}

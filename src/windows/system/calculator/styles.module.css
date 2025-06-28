@@ -1,0 +1,184 @@
+
+.calculator {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+      color: #0ff;
+      background-color: rgba(0, 0, 0, 0.7);
+      padding: 1rem;
+      box-sizing: border-box;
+}
+
+.glitch {
+      animation: glitchEffect 0.3s linear infinite;
+}
+
+@keyframes glitchEffect {
+      0% {
+            text-shadow: 0.05em 0 0 #0ff, -0.05em -0.025em 0 #f0f;
+      }
+
+      14% {
+            text-shadow: 0.05em 0 0 #0ff, -0.05em -0.025em 0 #f0f;
+      }
+
+      15% {
+            text-shadow: -0.05em -0.025em 0 #0ff, 0.025em 0.025em 0 #f0f;
+      }
+
+      49% {
+            text-shadow: -0.05em -0.025em 0 #0ff, 0.025em 0.025em 0 #f0f;
+      }
+
+      50% {
+            text-shadow: 0.025em 0.05em 0 #0ff, 0.05em 0 0 #f0f, 0 -0.05em 0 #0f0;
+      }
+
+      99% {
+            text-shadow: 0.025em 0.05em 0 #0ff, 0.05em 0 0 #f0f, 0 -0.05em 0 #0f0;
+      }
+
+      100% {
+            text-shadow: -0.025em 0 0 #0ff, -0.025em -0.025em 0 #f0f;
+      }
+}
+
+.display {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      text-align: right;
+      position: relative;
+      min-height: 4rem;
+      background-color: rgba(0, 20, 20, 0.5);
+      overflow: hidden;
+}
+
+.input {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+      text-shadow: 0 0 5px #0ff;
+}
+
+.result {
+      font-size: 1.5rem;
+      color: #f0f;
+      text-shadow: 0 0 5px #f0f;
+}
+
+.keypad {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-gap: 0.5rem;
+      flex-grow: 1;
+}
+
+.keypad button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      outline: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      background-color: rgba(0, 10, 20, 0.7);
+      position: relative;
+      overflow: hidden;
+      font-family: 'Courier New', monospace;
+      border-radius: 0;
+}
+
+.keypad button:hover {
+      transform: translateY(-2px);
+}
+
+.keypad button:active {
+      transform: translateY(0);
+}
+
+.number {
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff;
+}
+
+
+.operator {
+      color: #f0f;
+      text-shadow: 0 0 5px #f0f;
+}
+
+.control {
+      color: #0f0;
+      text-shadow: 0 0 5px #0f0;
+}
+
+
+
+.equals {
+      grid-column: span 4;
+      background-color: rgba(0, 20, 0, 0.7);
+      color: #0f0;
+      text-shadow: 0 0 5px #0f0;
+}
+
+
+
+.scanline {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom,
+                  rgba(0, 255, 255, 0.1) 0%,
+                  rgba(0, 255, 255, 0) 10%);
+      animation: scanline 5s linear infinite;
+      pointer-events: none;
+}
+
+@keyframes scanline {
+      0% {
+            transform: translateY(-100%);
+      }
+
+      100% {
+            transform: translateY(100%);
+      }
+}
+
+.corner {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-style: solid;
+      border-color: #0ff;
+      pointer-events: none;
+}
+
+.corner:nth-of-type(1) {
+      top: 0;
+      left: 0;
+      border-width: 2px 0 0 2px;
+}
+
+.corner:nth-of-type(2) {
+      top: 0;
+      right: 0;
+      border-width: 2px 2px 0 0;
+}
+
+.corner:nth-of-type(3) {
+      bottom: 0;
+      right: 0;
+      border-width: 0 2px 2px 0;
+}
+
+.corner:nth-of-type(4) {
+      bottom: 0;
+      left: 0;
+      border-width: 0 0 2px 2px;
+}

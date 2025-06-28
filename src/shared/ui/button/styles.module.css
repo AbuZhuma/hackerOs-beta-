@@ -1,0 +1,129 @@
+.hackerButton {
+  --primary-color: #00ffaa; 
+  --secondary-color: rgba(0, 255, 170, 0.2);
+  --text-color: #e0e0e0;
+  --disabled-color: #4a4a4a;
+  
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  font-family: 'SF Mono', 'Roboto Mono', monospace; 
+  font-size: 15px;
+  padding: 10px 10px;
+  position: relative;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.hackerButton:not(.disabled)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid var(--primary-color);
+  border-radius: 4px;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: scale(0.95);
+}
+
+.hackerButton:hover:not(.disabled) {
+  color: white;
+  text-shadow: 0 0 8px var(--primary-color);
+}
+
+.hackerButton:hover:not(.disabled)::before {
+  opacity: 0.6;
+  transform: scale(1);
+}
+
+.hackerButton:active:not(.disabled) {
+  transform: translateY(1px) scale(0.98);
+}
+
+.hackerButton:not(.disabled)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: var(--primary-color);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hackerButton:hover:not(.disabled)::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.hackerButton.disabled {
+  color: var(--disabled-color);
+  cursor: not-allowed;
+}
+.bracket {
+  color: var(--disabled-color);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hackerButton:hover:not(.disabled) .bracket {
+  color: var(--primary-color);
+}
+
+.text {
+  margin: 0 8px;
+  position: relative;
+}
+
+.cursor {
+  position: absolute;
+  right: -6px;
+  width: 2px;
+  height: 16px;
+  background: var(--primary-color);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: blink 1s infinite;
+}
+
+.cursor.visible {
+  opacity: 1;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.hackerButton.small {
+  font-size: 12px;
+  padding: 8px 12px;
+}
+
+.hackerButton.grayStyle {
+  --primary-color: #aaaaaa;
+  --secondary-color: rgba(170, 170, 170, 0.2);
+}
+
+.hackerButton:not(.disabled):hover {
+  animation: glitch-effect 0.3s linear 1;
+}
+
+@keyframes glitch-effect {
+  0% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}

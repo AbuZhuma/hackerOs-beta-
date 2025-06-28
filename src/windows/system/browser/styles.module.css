@@ -1,0 +1,322 @@
+.browserContainer {
+  --neon-pink: #ff2a6d;
+  --neon-blue: #05d9e8;
+  --neon-purple: #d300c5;
+  --neon-green: #00ff9d;
+  --dark-bg: rgba(10, 10, 20, 0.8);
+  --darker-bg: rgba(5, 5, 15, 0.9);
+  --glow-effect: 0 0 5px var(--neon-blue), 0 0 10px var(--neon-blue), 0 0 15px var(--neon-blue);
+  --pink-glow: 0 0 5px var(--neon-pink), 0 0 10px var(--neon-pink);
+  
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  font-family: 'Courier New', monospace;
+}
+
+.browserHeader {
+  background: var(--darker-bg);
+  border-bottom: 1px solid var(--neon-purple);
+  position: relative;
+}
+
+.browserControls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.controlButton {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  position: relative;
+}
+
+.controlButton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.controlButton:hover::after {
+  opacity: 1;
+}
+
+.close {
+  background-color: #ff5f56;
+  border: 1px solid #ff5f56;
+}
+
+.close::after {
+  box-shadow: 0 0 2px 1px #ff5f56;
+}
+
+.minimize {
+  background-color: #ffbd2e;
+  border: 1px solid #ffbd2e;
+}
+
+.minimize::after {
+  box-shadow: 0 0 2px 1px #ffbd2e;
+}
+
+.expand {
+  background-color: #27c93f;
+  border: 1px solid #27c93f;
+}
+
+.expand::after {
+  box-shadow: 0 0 2px 1px #27c93f;
+}
+
+.searchContainer {
+  display: flex;
+  margin-bottom: 6px;
+  position: relative;
+}
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid var(--neon-purple);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.searchLabel {
+  padding: 6px 8px;
+  background: var(--neon-purple);
+  color: black;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 6px;
+  color: var(--neon-green);
+  font-family: 'Courier New', monospace;
+  outline: none;
+}
+
+.searchInput::placeholder {
+  color: rgba(5, 217, 232, 0.5);
+}
+
+.searchButton {
+  background: var(--neon-purple);
+  border: none;
+  padding: 6px 12px;
+  color: black;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 12px;
+  transition: all 0.3s;
+}
+
+.searchButton:hover {
+  background: var(--neon-pink);
+  color: white;
+}
+
+.reloadButton {
+  background: transparent;
+  border: none;
+  padding: 6px 10px;
+  cursor: pointer;
+  color: var(--neon-blue);
+  font-weight: bold;
+  transition: all 0.3s;
+}
+
+.reloadButton:hover {
+  color: var(--neon-pink);
+}
+
+.reloadIcon {
+  display: inline-block;
+  transition: transform 0.5s;
+}
+
+.reloadButton:hover .reloadIcon {
+  transform: rotate(360deg);
+}
+
+.cyberDeco {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  overflow: hidden;
+}
+
+.decoLine {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+}
+
+.decoGlow {
+  position: absolute;
+  bottom: 0;
+  left: -100%;
+  width: 100%;
+  height: 1px;
+  background: var(--neon-blue);
+  animation: scanline 3s linear infinite;
+}
+
+.browserContent {
+  flex: 1;
+  position: relative;
+  background: black;
+  overflow: hidden;
+}
+
+.browserIframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: white;
+}
+
+.loadingOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.loadingSpinner {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.spinnerPart {
+  width: 8px;
+  height: 24px;
+  background: var(--neon-pink);
+  animation: pulse 1s infinite ease-in-out;
+}
+
+.spinnerPart:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.spinnerPart:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+.loadingText {
+  color: var(--neon-blue);
+  text-shadow: var(--glow-effect);
+  font-size: 14px;
+  letter-spacing: 1px;
+}
+
+.errorScreen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--darker-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: var(--neon-pink);
+  text-align: center;
+  padding: 20px;
+  z-index: 5;
+}
+
+.errorIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  text-shadow: var(--pink-glow);
+}
+
+.errorMessage {
+  font-size: 18px;
+  margin-bottom: 8px;
+  max-width: 80%;
+  line-height: 1.4;
+}
+
+.errorHelp {
+  font-size: 14px;
+  color: var(--neon-blue);
+  margin-top: 16px;
+}
+
+.browserFooter {
+  background: var(--darker-bg);
+  padding: 4px 8px;
+  border-top: 1px solid var(--neon-purple);
+}
+
+.statusBar {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: var(--neon-blue);
+}
+
+.cyberTag {
+  background: var(--neon-purple);
+  color: black;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 10px;
+  animation: flicker 2s infinite alternate;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scaleY(0.5); opacity: 0.5; }
+  50% { transform: scaleY(1.5); opacity: 1; }
+}
+
+@keyframes scanline {
+  to { left: 100%; }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 5px var(--neon-pink);
+  }
+  20%, 22%, 24%, 55% {
+    opacity: 0.5;
+    text-shadow: none;
+  }
+}

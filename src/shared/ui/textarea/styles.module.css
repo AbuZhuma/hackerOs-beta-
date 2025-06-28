@@ -1,0 +1,239 @@
+.textareaContainer {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-family: 'Courier New', monospace;
+  color: #00ffaa;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  text-shadow: 0 0 5px #00ffff80;
+  position: relative;
+  padding-left: 15px;
+}
+
+.label::before {
+  content: '>';
+  position: absolute;
+  left: 0;
+  color: #00ffaa;
+  animation: blink 1.5s infinite steps(1);
+}
+
+.required {
+  color: #ff0055;
+  margin-left: 0.25rem;
+  text-shadow: 0 0 5px #ff005580;
+}
+
+.textareaWrapper {
+  position: relative;
+  border: 1px solid #00ffaa40;
+  background-color: rgba(0, 10, 20, 0.7);
+  transition: all 0.3s cubic-bezier(0.65, 0.05, 0.36, 1);
+  padding: 0.5rem 0.8rem;
+  min-height: 150px;
+  height: 90%;
+  border-radius: 4px;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+}
+
+.textareaWrapper:focus-within {
+  border-color: #00ffaa;
+  box-shadow: 0 0 15px #00ffff80;
+  background-color: rgba(0, 20, 40, 0.8);
+}
+
+.textareaWrapper::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #00ffaa10 50%,
+    transparent 100%
+  );
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+  opacity: 0;
+}
+
+.textareaWrapper:focus-within::after {
+  opacity: 0.5;
+}
+
+.linesContainer {
+  font-family: 'Courier New', monospace;
+  color: #00ffaa;
+  white-space: pre;
+  line-height: 1.6;
+  pointer-events: none;
+  text-shadow: 0 0 3px #00ffff80;
+  overflow-y: auto;
+  max-height: 100%;
+  padding-right: 5px;
+}
+
+.line {
+  display: flex;
+  min-height: 1.6em;
+  position: relative;
+}
+
+.bracket {
+  color: #00ffaa60;
+  user-select: none;
+  padding: 0 6px;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.textareaWrapper:focus-within .bracket {
+  color: #00ffaa;
+}
+
+.lineContent {
+  flex: 1;
+  position: relative;
+  padding: 0 4px;
+}
+
+.cursor {
+  position: absolute;
+  display: inline-block;
+  width: 2px;
+  height: 1.4rem;
+  background-color: #00ffaa;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  vertical-align: middle;
+  box-shadow: 0 0 5px #00ffff;
+}
+
+.cursor.visible {
+  opacity: 1;
+  animation: blink 1s step-end infinite;
+}
+
+.textarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: transparent;
+  border: none;
+  color: transparent;
+  font-family: 'Courier New', monospace;
+  padding: 0.8rem;
+  outline: none;
+  font-size: 1rem;
+  line-height: 1.6;
+  resize: none;
+  caret-color: #00ffaa;
+  white-space: pre;
+  overflow: hidden;
+}
+
+.error .bracket,
+.error .cursor {
+  color: #ff0055;
+  text-shadow: 0 0 5px #ff005580;
+}
+
+.error .textareaWrapper {
+  border-color: #ff0055;
+  box-shadow: 0 0 15px #ff005580;
+  background-color: rgba(40, 0, 10, 0.7);
+}
+
+.success .bracket {
+  color: #00ffaa;
+}
+
+.success .textareaWrapper {
+  border-color: #00ffaa;
+  box-shadow: 0 0 15px #00ffaa80;
+}
+
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-color: #555;
+}
+
+.disabled .label,
+.disabled .linesContainer {
+  color: #555;
+}
+
+.errorMessage {
+  margin-top: 0.5rem;
+  color: #ff0055;
+  font-family: 'Courier New', monospace;
+  font-size: 0.8rem;
+  padding-left: 1rem;
+  text-shadow: 0 0 3px #ff005580;
+  position: relative;
+}
+
+.errorMessage::before {
+  content: '!';
+  position: absolute;
+  left: 0;
+  color: #ff0055;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.linesContainer::-webkit-scrollbar {
+  width: 8px;
+}
+
+.linesContainer::-webkit-scrollbar-track {
+  background: rgba(0, 20, 20, 0.1);
+  border-left: 1px solid #00ffaa20;
+}
+
+.linesContainer::-webkit-scrollbar-thumb {
+  background: linear-gradient(#00ffaa40, #00ffff60);
+  border-radius: 2px;
+  border: 1px solid #00ffaa60;
+}
+
+.linesContainer::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(#00ffaa60, #00ffff80);
+}
+
+.textareaWrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to right, rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 10px 20px;
+  pointer-events: none;
+  z-index: -1;
+}
